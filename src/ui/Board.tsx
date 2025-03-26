@@ -30,24 +30,21 @@ export default function Board(props: {
     status = "Next player: " + (xIsNext ? "X" : "O");
   }
 
+  const rows: React.ReactElement[] = [];
+  for (let i = 0; i < 3; i++) {
+    rows.push(
+      <Row
+        rowNum={i}
+        squares={squares.slice(i * 3, i * 3 + 3)}
+        onSquareClick={(position) => handleClick(position)}
+      />
+    );
+  }
+
   return (
     <>
       <div className="status">{status}</div>
-      <Row
-        rowNum={0}
-        squares={squares.slice(0, 3)}
-        onSquareClick={(position) => handleClick(position)}
-      />
-      <Row
-        rowNum={1}
-        squares={squares.slice(3, 6)}
-        onSquareClick={(position) => handleClick(position)}
-      />
-      <Row
-        rowNum={2}
-        squares={squares.slice(6, 9)}
-        onSquareClick={(position) => handleClick(position)}
-      />
+      {rows}
     </>
   );
 }
