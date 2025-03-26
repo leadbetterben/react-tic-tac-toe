@@ -2,6 +2,7 @@ import React from "react";
 import Square from "./Square";
 
 export default function Row(props: {
+  key: number;
   rowNum: number;
   squares: string[];
   onSquareClick: (position: number) => void;
@@ -13,6 +14,7 @@ export default function Row(props: {
       {squares.map((square, i) => {
         return (
           <Square
+            key={i}
             value={square}
             onSquareClick={() => onSquareClick(rowNum * squares.length + i)}
           />

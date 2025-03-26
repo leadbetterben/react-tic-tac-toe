@@ -34,6 +34,7 @@ export default function Board(props: {
   for (let i = 0; i < 3; i++) {
     rows.push(
       <Row
+        key={i}
         rowNum={i}
         squares={squares.slice(i * 3, i * 3 + 3)}
         onSquareClick={(position) => handleClick(position)}

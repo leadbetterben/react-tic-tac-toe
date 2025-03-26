@@ -14,6 +14,10 @@ export default function Game() {
   }
 
   const moves = history.map((_, move) => {
+    if (move == currentMove) {
+      return <p key={move}>You are at move # {move} </p>;
+    }
+
     let description = move == 0 ? "Go to game start" : "Go to move #" + move;
 
     return (
