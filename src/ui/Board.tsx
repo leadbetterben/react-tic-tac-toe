@@ -9,16 +9,17 @@ export default function Board(props: {
   const { xIsNext, squares, onPlay } = props;
 
   function handleClick(i: number) {
-    console.log(i);
     if (calculateWinner(squares) || squares[i]) {
       return;
     }
+
     const nextSquares = squares.slice();
     if (xIsNext) {
       nextSquares[i] = "X";
     } else {
       nextSquares[i] = "O";
     }
+
     onPlay(nextSquares);
   }
 
@@ -26,6 +27,9 @@ export default function Board(props: {
   let status: string;
   if (winner) {
     status = "Winner: " + winner;
+  } else if (!squares.includes("")) {
+    // If there are no empty squares then we have a draw
+    status = "Draw!";
   } else {
     status = "Next player: " + (xIsNext ? "X" : "O");
   }
@@ -50,7 +54,7 @@ export default function Board(props: {
   );
 }
 
-function calculateWinner(squares) {
+function calculateWinner(squares: string[]): string {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
@@ -67,5 +71,5 @@ function calculateWinner(squares) {
       return squares[a];
     }
   }
-  return null;
+  return "";
 }
